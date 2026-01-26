@@ -44,6 +44,8 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
     
+    <style>[x-cloak] { display: none !important; }</style>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HH4YC7JHF7"></script>
     <script>
@@ -182,15 +184,37 @@
                 </div>
                 
                 <!-- Contact Form -->
-                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200">
-                    <div class="text-center mb-8">
-                        <h3 class="font-display text-3xl text-gray-900 mb-2">Request a Quote</h3>
-                        <p class="text-gray-500">Fill out the form below and we'll get back to you shortly</p>
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200" x-data="{ submitted: new URLSearchParams(window.location.search).has('submitted') }">
+                    
+                    <!-- Success Message -->
+                    <div x-show="submitted" x-cloak class="text-center py-8">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-3xl text-gray-900 mb-3">Message Sent!</h3>
+                        <p class="text-gray-600 text-lg mb-6">Thank you for reaching out! We've received your request and will be in touch with you shortly.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="contact.html" class="bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors">
+                                Send Another Message
+                            </a>
+                            <a href="index.html" class="bg-gray-100 text-gray-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors">
+                                Back to Home
+                            </a>
+                        </div>
                     </div>
-                    <form action="https://formsubmit.co/advancekeys@outlook.com" method="POST" class="space-y-5" onsubmit="document.getElementById('_replyto').value = document.getElementById('email').value;">
+                    
+                    <!-- Form -->
+                    <div x-show="!submitted">
+                        <div class="text-center mb-8">
+                            <h3 class="font-display text-3xl text-gray-900 mb-2">Request a Quote</h3>
+                            <p class="text-gray-500">Fill out the form below and we'll get back to you shortly</p>
+                        </div>
+                        <form action="https://formsubmit.co/advancekeys@outlook.com" method="POST" class="space-y-5" onsubmit="document.getElementById('_replyto').value = document.getElementById('email').value;">
                         <!-- Formsubmit.co configuration -->
                         <input type="hidden" name="_subject" value="New Quote Request from Website">
-                        <input type="hidden" name="_next" value="https://advancekeysandlocks.com/contact.html?submitted=true">
+                        <input type="hidden" name="_next" value="contact.html?submitted=true">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="text" name="_honey" style="display:none">
@@ -293,7 +317,8 @@
                         <p class="text-gray-500 text-sm text-center">
                             We'll respond to your inquiry within 24 hours.
                         </p>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
