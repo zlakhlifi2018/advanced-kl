@@ -43,6 +43,16 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HH4YC7JHF7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-HH4YC7JHF7');
+    </script>
 </head>
 <body class="bg-dark text-white font-body" x-data="{ mobileMenuOpen: false }">
     
@@ -177,7 +187,15 @@
                         <h3 class="font-display text-3xl text-gray-900 mb-2">Request a Quote</h3>
                         <p class="text-gray-500">Fill out the form below and we'll get back to you shortly</p>
                     </div>
-                    <form action="https://formspree.io/f/advancekeys@outlook.com" method="POST" class="space-y-5">
+                    <form action="https://formsubmit.co/advancekeys@outlook.com" method="POST" class="space-y-5" onsubmit="document.getElementById('_replyto').value = document.getElementById('email').value;">
+                        <!-- Formsubmit.co configuration -->
+                        <input type="hidden" name="_subject" value="New Quote Request from Website">
+                        <input type="hidden" name="_next" value="https://advancekeysandlocks.com/contact.html?submitted=true">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="_replyto" id="_replyto">
+                        
                         <div class="grid sm:grid-cols-2 gap-5">
                             <div>
                                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
